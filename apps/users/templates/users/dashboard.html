@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        <a href="{% url 'profile' %}" class="bg-blue-600 text-white p-6 rounded-lg shadow hover:bg-blue-700">
+            <h3 class="text-xl font-bold">Profile</h3>
+            <p class="text-sm">View and edit your personal details</p>
+        </a>
+        <a href="{% url 'booking_list' %}" class="bg-green-600 text-white p-6 rounded-lg shadow hover:bg-green-700">
+            <h3 class="text-xl font-bold">My Bookings</h3>
+            <p class="text-sm">Check upcoming and past bookings</p>
+        </a>
+        <a href="{% url 'travel_list' %}" class="bg-yellow-500 text-black p-6 rounded-lg shadow hover:bg-yellow-600">
+            <h3 class="text-xl font-bold">Book Travel</h3>
+            <p class="text-sm">Find flights, trains, and buses</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

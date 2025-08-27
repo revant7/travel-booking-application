@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center mb-6">Create an Account</h2>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="bg-red-100 text-red-700 p-2 rounded">
+            Please fix the errors below.
+        </div>
+        {% endif %}
+
+        <div>
+            <label for="username" class="block font-semibold">Username</label>
+            <input type="text" name="username" id="username" class="w-full border rounded p-2" required>
+        </div>
+
+        <div>
+            <label for="email" class="block font-semibold">Email</label>
+            <input type="email" name="email" id="email" class="w-full border rounded p-2" required>
+        </div>
+
+        <div>
+            <label for="password1" class="block font-semibold">Password</label>
+            <input type="password" name="password1" id="password1" class="w-full border rounded p-2" required>
+        </div>
+
+        <div>
+            <label for="password2" class="block font-semibold">Confirm Password</label>
+            <input type="password" name="password2" id="password2" class="w-full border rounded p-2" required>
+        </div>
+
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+            Register
+        </button>
+    </form>
+
+    <p class="text-center mt-4 text-gray-600">
+        Already have an account?
+        <a href="{% url 'login' %}" class="text-blue-600 font-semibold hover:underline">Login</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Booking Success{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto text-center bg-green-100 p-8 rounded-lg shadow">
+    <h2 class="text-3xl font-bold text-green-700 mb-4">Booking Confirmed 🎉</h2>
+    <p class="text-lg">Your booking for {{ booking.travel_option.type|title }}
+        ({{ booking.travel_option.source }} → {{ booking.travel_option.destination }}) has been confirmed.</p>
+    <p class="mt-2">Booking ID: <strong>{{ booking.booking_id }}</strong></p>
+    <a href="{% url 'booking_list' %}"
+        class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        View My Bookings
+    </a>
+</div>
+{% endblock %}

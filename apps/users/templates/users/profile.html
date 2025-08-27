@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-4">My Profile</h2>
+    {% if messages %}
+    <div class="mb-4">
+        {% for message in messages %}
+        <div
+            class="{% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %} p-2 rounded">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="flex items-center space-x-6">
+        {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" alt="Profile" class="w-24 h-24 rounded-full">
+        {% else %}
+        <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center">👤</div>
+        {% endif %}
+        <div>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.phone_number }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+        </div>
+    </div>
+    <a href="{% url 'profile_edit' %}"
+        class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Edit Profile
+    </a>
+</div>
+{% endblock %}

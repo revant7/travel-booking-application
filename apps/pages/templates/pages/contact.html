@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-6">Contact Us</h2>
+
+    <form method="post" class="space-y-4 mb-10">
+        {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+            <div
+                class="{% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %} p-2 rounded">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% csrf_token %}
+        <div>
+            <label class="block font-semibold">Name</label>
+            <input type="text" name="name" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+            <label class="block font-semibold">Email</label>
+            <input type="email" name="email" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+            <label class="block font-semibold">Message</label>
+            <textarea name="message" rows="4" class="w-full border rounded p-2" required></textarea>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Send</button>
+    </form>
+
+    <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+        <div>
+            <h3 class="font-semibold">1. How do I cancel my booking?</h3>
+            <p class="text-gray-600">You can cancel from the "My Bookings" page by clicking the Cancel button.</p>
+        </div>
+        <div>
+            <h3 class="font-semibold">2. Will I get a refund?</h3>
+            <p class="text-gray-600">Refund depends on the travel provider’s cancellation policy.</p>
+        </div>
+        <div>
+            <h3 class="font-semibold">3. Which payment methods are supported?</h3>
+            <p class="text-gray-600">We support UPI, credit/debit cards, and net banking.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

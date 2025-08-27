@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Offers & Discounts{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-3xl font-bold mb-6">Latest Offers</h2>
+
+    <div class="space-y-4">
+        <div class="p-4 bg-yellow-100 rounded-lg">
+            <h3 class="font-bold">🔥 20% off on Flights</h3>
+            <p>Use code <strong>FLY20</strong> while booking.</p>
+        </div>
+        <div class="p-4 bg-green-100 rounded-lg">
+            <h3 class="font-bold">🚆 10% off on Train Tickets</h3>
+            <p>Valid till the end of this month.</p>
+        </div>
+        <div class="p-4 bg-blue-100 rounded-lg">
+            <h3 class="font-bold">🚌 Bus Bookings Cashback</h3>
+            <p>Get ₹50 cashback on your first bus booking.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

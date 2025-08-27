@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow">
+    <h2 class="text-2xl font-bold mb-6">Checkout</h2>
+    <p class="mb-4">Confirm your booking for <strong>{{ travel.type|title }}: {{ travel.source }} → {{
+            travel.destination }}</strong></p>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <div>
+            <label class="block font-semibold">Number of Seats</label>
+            <input type="number" name="number_of_seats" min="1" max="{{ travel.available_seats }}"
+                class="w-full border rounded p-2" required>
+        </div>
+        <div>
+            <label class="block font-semibold">Payment Method</label>
+            <select name="payment_method" class="w-full border rounded p-2">
+                <option value="card">Credit/Debit Card</option>
+                <option value="upi">UPI</option>
+                <option value="netbanking">Net Banking</option>
+            </select>
+        </div>
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+            Confirm & Pay
+        </button>
+    </form>
+</div>
+{% endblock %}
