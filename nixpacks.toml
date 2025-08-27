@@ -1,2 +1,2 @@
 [build]
-  buildCommand = "apt-get update && apt-get install -y default-libmysqlclient-dev pkg-config && pip install -r requirements.txt"
+aptPkgs = ["default-libmysqlclient-dev", "pkg-config"]
