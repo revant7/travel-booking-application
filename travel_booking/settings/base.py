@@ -85,7 +85,7 @@ WSGI_APPLICATION = "travel_booking.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "mysql.connector.django",
         "NAME": config("TDB_NAME"),
         "USER": config("TDB_USER"),
         "PASSWORD": config("TDB_PASSWORD"),
