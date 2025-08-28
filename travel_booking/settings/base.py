@@ -91,6 +91,9 @@ DATABASES = {
         "PASSWORD": config("TDB_PASSWORD"),
         "HOST": config("TDB_HOST"),
         "PORT": config("TDB_PORT"),
+        "OPTIONS": {
+            "raise_on_warnings": False,
+        },
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',

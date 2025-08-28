@@ -22,3 +22,16 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.booking_id} - {self.user.username} - {self.status}"
+
+    def save(self, *args, **kwargs):
+        if not self.pk and self.status == "confirmed":
+            self.travel_option.available_seats -= self.number_of_seats
+            self.travel_option.save()
+        super().save(*args, **kwargs)
+
+    def cancel(self):
+        if self.status == "confirmed":
+            self.travel_option.available_seats += self.number_of_seats
+            self.travel_option.save()
+            self.status = "cancelled"
+            self.save()

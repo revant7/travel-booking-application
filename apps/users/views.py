@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import CustomUser
+from django.contrib.auth.views import LoginView
 
 
 def register(request):
@@ -30,6 +31,13 @@ def register(request):
         return redirect("dashboard")
 
     return render(request, "users/register.html")
+
+
+class CustomLoginView(LoginView):
+    template_name = "users/login.html"
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def custom_login(request):

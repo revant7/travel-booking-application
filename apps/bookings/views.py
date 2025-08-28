@@ -66,13 +66,8 @@ def booking_cancel(request, pk):
         )
         return redirect("booking_list")
 
-    if booking.status == "confirmed":
-        travel = booking.travel_option
-        travel.available_seats += booking.number_of_seats
-        travel.save()
-
-        booking.status = "cancelled"
-        booking.save()
+    booking.cancel()
+    messages.success(request, "Your booking has been cancelled successfully.")
 
     return redirect("booking_cancelled")
 
