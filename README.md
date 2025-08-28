@@ -3,7 +3,7 @@
 An end-to-end **Travel Booking Platform** developed with **Django** and **MySQL**, designed to streamline the process of exploring travel options, booking tickets, and managing reservations.  
 
 The project showcases **full-stack development skills** including authentication, relational database design, booking workflows, and deployment on Railway.  
-It was implemented as part of an academic assignment but structured to reflect **real-world, production-ready practices**.
+It was implemented and structured to reflect **real-world, production-ready practices**.
 
 🔗 **Live Demo** → [Travel Booking Application](https://travel-booking-application-production.up.railway.app/)
 
@@ -16,13 +16,13 @@ It was implemented as part of an academic assignment but structured to reflect *
 - **Booking Lifecycle** → Users can review, manage, and cancel bookings
 - **Secure & Reliable** → Built on Django’s authentication & CSRF protection
 - **Production Deployment** → Hosted on Railway with MySQL integration
-- **Clean UI/UX** → Responsive pages styled with Bootstrap & CSS
+- **Clean UI/UX** → Responsive pages styled with Tailwind CSS
 
 ---
 
 ## 🛠️ Tech Stack
 - **Backend:** Django (Python)
-- **Frontend:** Django Templates + Bootstrap 5
+- **Frontend:** Django Templates + Tailwind CSS
 - **Database:** MySQL
 - **Deployment:** Railway
 - **Version Control:** Git & GitHub
