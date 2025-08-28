@@ -27,20 +27,6 @@ It was implemented as part of an academic assignment but structured to reflect *
 - **Deployment:** Railway
 - **Version Control:** Git & GitHub
 
----
-
-## 📂 Project Structure
-travel_booking_app/
-│-- apps/ # Django apps (bookings, users, travel, etc.)
-│-- travel_booking/ # Project settings (base, dev, prod)
-│-- templates/ # HTML templates
-│-- static/ # CSS, JS, Bootstrap
-│-- manage.py
-│-- requirements.txt
-│-- README.md
-
-
----
 
 ## ⚙️ Installation & Setup
 
@@ -62,9 +48,10 @@ python manage.py runserver
 
 ### 3. Database Setup
 
-#### Create a MySQL database
-#### Configure .env with DB credentials:
-bash```
+Create a MySQL database
+Configure .env with DB credentials:
+
+```bash
 DB_NAME=travel_db
 DB_USER=root
 DB_PASSWORD=yourpassword
@@ -76,7 +63,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Deployment
+### Deployment
 Application deployed on Railway
 
 Environment variables stored securely
