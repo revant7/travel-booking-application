@@ -11,11 +11,18 @@ from django.contrib import messages
 
 @login_required
 def booking_list(request):
-    bookings = Booking.objects.filter(user=request.user).order_by("-booking_date")
+    upcoming = Booking.objects.filter(
+        user=request.user, travel_option__departure_datetime__gte=timezone.now()
+    ).order_by("travel_option__departure_datetime")
+
+    past = Booking.objects.filter(
+        user=request.user, travel_option__departure_datetime__lt=timezone.now()
+    ).order_by("-travel_option__departure_datetime")
+
     return render(
         request,
         "bookings/booking_list.html",
-        {"bookings": bookings, "now": timezone.now()},
+        {"upcoming": upcoming, "past": past, "now": timezone.now()},
     )
 
 
@@ -40,9 +47,6 @@ def checkout(request, travel_id):
             total_price=total_price,
             status="confirmed",
         )
-        # reduce available seats
-        travel.available_seats -= seats
-        travel.save()
 
         return redirect("booking_success", pk=booking.pk)
 

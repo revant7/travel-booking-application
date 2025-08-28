@@ -3,10 +3,11 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
 from .models import TravelOption
+from django.utils import timezone
 
 
 def travel_list(request):
-    travels = TravelOption.objects.all()
+    travels = TravelOption.objects.filter(departure_datetime__gte=timezone.now())
 
     source = request.GET.get("source")
     destination = request.GET.get("destination")

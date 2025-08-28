@@ -25,6 +25,8 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk and self.status == "confirmed":
+            if self.number_of_seats > self.travel_option.available_seats:
+                raise ValueError("Not enough seats available.")
             self.travel_option.available_seats -= self.number_of_seats
             self.travel_option.save()
         super().save(*args, **kwargs)

@@ -3,28 +3,61 @@
 
 {% block content %}
 <h2 class="text-2xl font-bold mb-6">My Bookings</h2>
-<div class="space-y-4">
-    {% for booking in bookings %}
-    <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+
+<!-- Upcoming -->
+<h2 class="text-xl font-bold mb-4">Upcoming Trips</h2>
+{% if upcoming %}
+  <div class="space-y-4">
+    {% for booking in upcoming %}
+      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
         <div>
-            <p class="font-semibold">{{ booking.travel_option.type|title }}: {{ booking.travel_option.source }} → {{booking.travel_option.destination }}</p>
-            <p class="text-gray-600">Seats: {{ booking.number_of_seats }} | Total: ₹{{ booking.total_price }}</p>
-            <p class="text-gray-600">Status: <span class="font-semibold">{{ booking.status|title }}</span></p>
+          <p class="font-semibold">
+            {{ booking.travel_option.type|title }}: {{ booking.travel_option.source }} → {{ booking.travel_option.destination }}
+          </p>
+          <p class="text-gray-600">Seats: {{ booking.number_of_seats }} | Total: ₹{{ booking.total_price }}</p>
+          <p class="text-gray-600">
+            Departure: {{ booking.travel_option.departure_datetime|date:"M d, Y H:i" }}
+          </p>
+          <p class="text-gray-600">Status: <span class="font-semibold">{{ booking.status|title }}</span></p>
         </div>
+
         {% if booking.status == "confirmed" %}
-            {% if booking.travel_option.departure_datetime > now %}
-                <a href="{% url 'booking_cancel' booking.booking_id %}" 
-                   class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                   Cancel
-                </a>
-            {% else %}
-                <a href="{% url 'booking_cancel' booking.booking_id %}"
-                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Cancel</a>
-            {% endif %}
+          <a href="{% url 'booking_cancel' booking.booking_id %}" 
+             class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+             Cancel
+          </a>
         {% endif %}
-    </div>
-    {% empty %}
-    <p>You have no bookings yet.</p>
+      </div>
     {% endfor %}
-</div>
+  </div>
+{% else %}
+  <p class="text-gray-500">No upcoming trips.</p>
+{% endif %}
+
+<!-- Past -->
+<h2 class="text-xl font-bold mt-8 mb-4">Past Trips</h2>
+{% if past %}
+  <div class="space-y-4">
+    {% for booking in past %}
+      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+        <div>
+          <p class="font-semibold">
+            {{ booking.travel_option.type|title }}: {{ booking.travel_option.source }} → {{ booking.travel_option.destination }}
+          </p>
+          <p class="text-gray-600">Seats: {{ booking.number_of_seats }} | Total: ₹{{ booking.total_price }}</p>
+          <p class="text-gray-600">
+            Departure: {{ booking.travel_option.departure_datetime|date:"M d, Y H:i" }}
+          </p>
+          <p class="text-gray-600">Status: <span class="font-semibold">{{ booking.status|title }}</span></p>
+        </div>
+
+        <button class="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed" disabled>
+          Cancel
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-gray-500">No past trips.</p>
+{% endif %}
 {% endblock %}
